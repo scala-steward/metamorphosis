@@ -10,29 +10,27 @@ import org.apache.kafka.connect.data.{Schema, Struct}
 import org.apache.kafka.connect.transforms.Transformation
 import org.apache.kafka.connect.transforms.util.SimpleConfig
 
-object UnwrapTransformation {
-  val Field = "field"
+class UnwrapTransformation[R <: ConnectRecord[R]]() extends Transformation[R] {
+  private val targetFieldParameter = "field"
 
-  val CONFIG_DEF: ConfigDef =
+  private val configDef: ConfigDef =
     (new ConfigDef)
       .define(
-        Field,
+        targetFieldParameter,
         Type.STRING,
         "",
         Importance.HIGH,
         "Name of the field to unwrap"
       )
-}
 
-class UnwrapTransformation[R <: ConnectRecord[R]]() extends Transformation[R] {
-  private val targetField: AtomicReference[Option[String]] = new AtomicReference(Option.empty)
+  private val targetField: AtomicReference[Option[String]] =
+    new AtomicReference(Option.empty)
 
-  override def config(): ConfigDef = UnwrapTransformation.CONFIG_DEF
+  override def config(): ConfigDef =
+    configDef
 
-  override def configure(props: JMap[String, _]): Unit = {
-    val config = new SimpleConfig(UnwrapTransformation.CONFIG_DEF, props)
-    targetField.set(Option(config.getString(UnwrapTransformation.Field)))
-  }
+  override def configure(props: JMap[String, _]): Unit =
+    targetField.set(Option(new SimpleConfig(configDef, props).getString(targetFieldParameter)))
 
   override def apply(record: R): R =
     (targetField.get, Option(record.valueSchema), Option(record.value)) match {
