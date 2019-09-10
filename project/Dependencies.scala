@@ -5,7 +5,7 @@ object Dependencies {
   object Version {
     val scala = "2.12.9"
 
-    val cats = "1.6.1"
+    val cats = "2.0.0"
     val catsEffect = "1.4.0"
 
     val kafka = "2.3.0"
