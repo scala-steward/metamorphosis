@@ -11,7 +11,7 @@ object Dependencies {
     val kafka = "2.4.0"
 
     val minitest = "2.7.0"
-    val scalacheck = "1.14.0"
+    val scalacheck = "1.14.3"
   }
 
   val cats = "org.typelevel" %% "cats-core" % Version.cats
