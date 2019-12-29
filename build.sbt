@@ -33,12 +33,6 @@ lazy val shared =
     id = "shared",
     deps =
       Seq(
-        cats,
-        catsEffect,
-        minitest % "test",
-        minitestLaws % "test",
-        scalacheck % "test",
-        catsLaws % "test",
       )
   ).enablePlugins(BuildInfoPlugin)
     .settings(

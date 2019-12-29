@@ -105,8 +105,6 @@ object ProjectDefaults {
       // All subprojects to use
       libraryDependencies ++=
         Seq(
-          cats,
-          catsEffect
         ),
 
       addCompilerPlugin("org.typelevel" % "kind-projector" % "0.10.3" cross CrossVersion.binary),
