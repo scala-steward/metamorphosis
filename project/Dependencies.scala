@@ -5,7 +5,7 @@ object Dependencies {
   object Version {
     val scala = "2.12.10"
 
-    val kafka = "2.4.0"
+    val kafka = "2.4.1"
   }
 
   val kafkaConnectTransforms = "org.apache.kafka" % "connect-transforms" % Version.kafka
