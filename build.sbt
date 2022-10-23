@@ -79,6 +79,6 @@ def module(id: String, settings: Seq[Def.Setting[_]] = commonSettings, deps: Seq
     .settings(settings)
     .settings(
       name := s"$projectName-$id",
-      libraryDependencies ++= deps ++ Seq("org.scala-lang" % "scala-reflect" % "2.12.16")
+      libraryDependencies ++= deps ++ Seq("org.scala-lang" % "scala-reflect" % "2.12.17")
     )
 }
